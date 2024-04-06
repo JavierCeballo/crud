@@ -5,10 +5,16 @@
     {% if user.is_authenticated %}
 
         Hi, {{user.username }}!
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
 
     {% else %}
        <p>No estás registrado.</p>
        <a href="{% url 'login' %}">Log In</a>
+       <a href="{% url 'signup' %}">Sign Up</a>
+       
 
     {% endif %}
 
