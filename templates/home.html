@@ -2,8 +2,18 @@
 
 {% block content %}
 
-    {% for publication in publication_list %}
+    {% if user.is_authenticated %}
 
+        Hi, {{user.username }}!
+
+    {% else %}
+       <p>No estás registrado.</p>
+       <a href="{% url 'login' %}">Log In</a>
+
+    {% endif %}
+
+
+    {% for publication in publication_list %}
         <h2><a href="{% url 'post_detail' publication.pk %}">{{ publication.title }} </a></h2>
         <p>{{ publication.author }}</p>
 
